@@ -19,10 +19,14 @@ determines the name of the zip file created by "bundleWeb" (Continue passing
 in the webOutputDir property via the command line).
 
 */
+ext {
+	webOutputFile = 'web2'
+}
 
 task bundleWeb(type: Zip) {
-    baseName = 'web'
+    baseName = webOutputFile
     destinationDir = file(webOutputDir)
 
     from 'src/web'
 }
+
