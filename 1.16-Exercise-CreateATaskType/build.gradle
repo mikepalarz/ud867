@@ -15,3 +15,24 @@ Exercises:
 4. Run the "hello" task and observe the output.
 
 */
+
+// 1. Defined a task class
+class MyTask extends DefaultTask{
+
+	// Creating a name property for this task	
+	String firstName
+	// 2. Defined a task action for the new task class
+	@TaskAction
+	void doAction() {
+		println "Executing a custom task for $firstName"
+	}
+
+}
+
+// 3. Created an instance of the custom task
+task hello(type: MyTask){
+	// Setting the name property of the MyTask instance
+	firstName = "Mike"
+} 
+
+// 4. Executed the task within the command line. Executed sucessfully.
