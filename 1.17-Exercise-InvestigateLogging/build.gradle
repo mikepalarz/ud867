@@ -26,14 +26,37 @@ Exercises:
 task hello(type: HelloTask)
 
 class HelloTask extends DefaultTask {
+    
     @TaskAction
     void doAction() {
-        println 'Hello World'
+        logger.info('Before the print statement is executed')	
+        logger.lifecycle('Hello World')
+    	logger.info('After the print statement is executed')	
     }
 }
+
+logger.debug('Catch me if you can!')
+
+
+// The error message was the following:
+// Caused by: org.gradle.internal.metaobject.AbstractDynamicObject$CustomMessageMissingMethodException: Could not find method primp() for arguments [Herp de derp] on task ':derpy' of type org.gradle.api.DefaultTask.
 
 /*
 task derpy << {
     primp "Herp de derp"
 }
 */
+
+// CHALLENGE Solution:
+// The command line arguments that I used are as follows:
+// gradle --debug hello | grep "Catch me if you can"
+
+// Quiz question solution
+// In order to extract the relevant println statement, I used the following in the command line:
+// gradle --debug hello2 | grep "Hello world!"
+
+task hello2{
+	doLast{
+		println 'Hello world!'
+	}
+}
