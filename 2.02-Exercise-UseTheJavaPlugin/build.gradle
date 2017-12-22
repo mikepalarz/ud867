@@ -10,3 +10,9 @@ Exercises:
    file.
 
 */
+
+// 1. Applied the Java plugin
+apply plugin: "java"
+
+// 2. Ran the following command to produce a JAR file:
+// gradle jar 
