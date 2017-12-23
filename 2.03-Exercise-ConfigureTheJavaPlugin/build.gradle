@@ -26,3 +26,26 @@ User Guide chapter regarding the Java plugin.
 https://docs.gradle.org/current/userguide/java_plugin.html#sec:source_sets
 
 */
+
+// 1. Applied the Java plugin
+apply plugin: "java"
+
+// 2. Modified the Jar task
+jar {
+	manifest {
+		attributes 'Implementation-Version' : '1.0'	
+	}
+}
+
+// 3. Configured the main source set to include the 'java' directory
+sourceSets{
+	main{
+		java{
+			srcDir 'java'
+
+		}
+	}	
+}
+
+// 4. Ran the following command to build the JAR file:
+// gradle jar
