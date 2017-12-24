@@ -48,3 +48,10 @@ task zipDeps(type: Zip){
 	classifier 'deps'
 	from configurations.deps
 }
+
+task quizQuestion(type: Zip){
+	version '4.2'
+	baseName 'Foo'
+	classifier 'SNAPSHOT'
+	from 'src'
+}
