@@ -20,3 +20,13 @@ apply plugin: 'java'
 repositories {
     mavenCentral()
 }
+
+// 1. Adding a test dependency to the latest version of junit
+dependencies{
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+// 3. Modified the production code to pass the test. The error was 
+// due to the fact that the getName() method of the Person class 
+// was always returning "foo" of a Person. The class was adjusted 
+// to return the name that is set to the Person object.
