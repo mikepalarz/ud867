@@ -28,3 +28,23 @@ apply plugin: 'java'
 repositories {
     mavenCentral()
 }
+
+// 1. Defining a custom configuration
+configurations{
+	deps
+	// 2. Making the 'compile' config extend from 'deps'
+	compile.extendsFrom deps
+}
+
+dependencies{
+	// 3. Adding the Guava dependency to the 'deps' configuration
+	deps group: 'com.google.guava', name: 'guava', version: '23.6-jre' 
+}
+
+// 5. Added the zipDeps task and had it include all of the files from 
+// the 'deps' configuration
+task zipDeps(type: Zip){
+	baseName 'dependencyArchive'
+	classifier 'deps'
+	from configurations.deps
+}
