@@ -27,6 +27,22 @@ http://search.maven.org/
 
 apply plugin: 'java'
 
+// 1. Configuring Maven Central as a repo:
+repositories{
+	mavenCentral()
+}
+
+
+// 2. Adding a dependency to the 'compile' configuration for the 
+// latest verion of commons-io
+dependencies{
+	compile group: 'org.apache.commons', name: 'commons-io', version: '1.3.2'
+	
+	// 3. Adding a file dependency that includes all the jars 
+	// in the 'libs' directory
+	compile fileTree(dir: 'libs', include: '*.jar')	
+}
+
 task printDependencies {
     doLast {
         configurations.compile.each { println it.name }
