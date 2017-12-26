@@ -38,6 +38,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // Defining two new product flavors
+    productFlavors{
+        free {
+            applicationId 'com.udacity.gradle.declaringflavors.free'
+        }
+        paid {
+            applicationId 'com.udacity.gradle.declaringflavors.paid'
+        }
+    }
 }
 
 /*
