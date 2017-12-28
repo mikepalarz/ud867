@@ -19,10 +19,31 @@ The solution to this exercise is essentially Demo 4.05
 
 apply plugin: 'com.android.application'
 
+// I added the following per the guidance of the "Remove signing information from your build files"
+// section of the following link:
+// https://developer.android.com/studio/publish/app-signing.html
+
+// Creating a variable that will be initialized to my keystore.properties file in the root project
+// folder:
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+// Then, we create a Properties object based on the keystore properties file:
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+    signingConfigs {
+        config {
+            // Finally, we can access the properties of the keystore properties file in the
+            // following way
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
-
     defaultConfig {
         applicationId "com.udacity.gradle.automaticsigning"
         minSdkVersion 15
@@ -34,11 +55,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.1.1'
 }

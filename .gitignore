@@ -43,3 +43,6 @@ gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+
+# Making sure that Git does not include any keystore property files for Android projects
+keystore.properties
